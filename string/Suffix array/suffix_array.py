@@ -38,7 +38,8 @@ def suffix_array(s: str):
 
     w = 1
     while w < n:
-        sa.sort(key=cmp_to_key(rk, w))
+        # sa.sort(key=cmp_to_key(rk, w))
+        sa.sort(key=lambda x: (rk[x], rk[x+w]))
         p = 1
         for i in range(n):
             if i == 0:
@@ -90,7 +91,8 @@ if __name__ == '__main__':
     # s = "aabaaaab"
     # sa = [0, 1, 2, 3, 4, 5, 6, 7]
     # ra = [1, 1, 2, 1, 1, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    # sa = sorted(sa, key=cmp_to_key(ra, 1))
+    # sa = sorted(sa, key=lambda x: (ra[x], ra[x+1]))
+    # print(sa)
     # newra = [0] * len(ra)
     # p = 1
     # w = 1
@@ -104,6 +106,7 @@ if __name__ == '__main__':
     #     else:
     #         p += 1
     #         newra[sa[i]] = p
+    # print(newra, ra)
     print(suffix_array("aabaaaab"))
 
     # sample_id(s)
