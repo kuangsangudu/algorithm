@@ -8,6 +8,7 @@
 import sys
 import math
 
+
 class oula:
     def __init__(self, N):
         self.N = N
