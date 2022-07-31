@@ -5,12 +5,12 @@ import (
 )
 
 type Item interface {
-	less(than Item) bool
+	Less(than Item) bool
 }
 
 type Int int
 
-func (x Int) less(than Item) bool {
+func (x Int) Less(than Item) bool {
 	return x < than.(Int)
 }
 
@@ -43,7 +43,7 @@ func (h *heap) Insert(n Item) {
 
 func (h *heap) siftUp() {
 	for i := len(h.arr) - 1; i > 1; i >>= 1 {
-		if h.arr[i].less(h.arr[i>>1]) {
+		if h.arr[i].Less(h.arr[i>>1]) {
 			h.exchange(i, i>>1)
 		} else {
 			break
@@ -68,10 +68,10 @@ func (h *heap) sink() {
 	for i := 1; i < len(h.arr); {
 		s := i
 		lc, rc := i<<1, (i<<1)|1
-		if lc < len(h.arr) && h.arr[lc].less(h.arr[s]) {
+		if lc < len(h.arr) && h.arr[lc].Less(h.arr[s]) {
 			s = lc
 		}
-		if rc < len(h.arr) && h.arr[rc].less(h.arr[s]) {
+		if rc < len(h.arr) && h.arr[rc].Less(h.arr[s]) {
 			s = rc
 		}
 		if s == i {
