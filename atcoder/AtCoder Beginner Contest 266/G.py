@@ -43,14 +43,19 @@ class Combination:
         return self.C(n + r - 1, r - 1)
 
 
+# it can also use Inclusion-exclusion principle to solve this problem.
 def main(lines):
     R, G, B, K = map(int, lines[0].split(" "))
     R -= K
     G -= K
     sums = R+G+B+K
     mod = 998244353
-    c = Combination(sums+1, mod)
+    c = Combination(sums, mod)
     ret = c.C(G+B+K, K) * c.C(G+B, B) * c.C(R+K+B, K+B) % mod
+    # Inclusion-exclusion principle
+    # ret = 0
+    # for i in range(min(R, G)+1):
+    #     ret = (ret + c.C(sums-i, K) * c.C(sums-i-K, B) * c.C(sums-i-K-B, R-i) * c.C(G, G-i) * (-1 if i % 2 else 1)) % mod
     print(ret)
 
 
