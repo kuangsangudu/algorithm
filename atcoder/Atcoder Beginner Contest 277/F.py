@@ -37,6 +37,8 @@ def main(lines: List[str]):
         maps.append([min_a, max_a])
 
         keys = sorted(sum_a.keys())
+        # Point the idx of the equal value to a new id(new_p), while the new id(new_p) points
+        # to the next idx of the equal value
         for j in range(len(keys)-1):
             graph.append([])
             in_deg.append(0)
